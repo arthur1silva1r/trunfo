@@ -6,24 +6,25 @@ class Form extends React.Component {
       <>
         <input type="text" data-testid="name-input" />
         <textarea
-        data-testid="description-input"
-        name="descricao" id="descricao"
-        cols="30"
-        rows="10"
+          data-testid="description-input"
+          name="descricao"
+          id="descricao"
+          cols="30"
+          rows="10"
         />
 
-        <input 
-        type="number" 
-        data-testid="attr1-input"
+        <input
+          type="number"
+          data-testid="attr1-input"
         />
 
-        <input 
-        type="number" 
-        data-testid="attr2-input"
+        <input
+          type="number"
+          data-testid="attr2-input"
         />
-        <input 
-        type="number" 
-        data-testid="attr3-input"
+        <input
+          type="number"
+          data-testid="attr3-input"
         />
         <input type="text" data-testid="image-input" />
         <select name="raridade" id="raridade" data-testid="rare-input">
