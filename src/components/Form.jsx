@@ -25,7 +25,6 @@ class Form extends React.Component {
           value={ cardName }
           onChange={ onInputChange }
         />
-
         <textarea
           data-testid="description-input"
           name="descricao"
@@ -35,14 +34,12 @@ class Form extends React.Component {
           cols="30"
           rows="10"
         />
-
         <input
           type="number"
           data-testid="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
         />
-
         <input
           type="number"
           data-testid="attr2-input"
@@ -61,13 +58,12 @@ class Form extends React.Component {
           value={ cardImage }
           onChange={ onInputChange }
         />
-
         <label htmlFor="raridade">
           <select
             name="raridade"
             id="raridade"
             data-testid="rare-input"
-            checked={ cardRare }
+            value={ cardRare }
             onChange={ onInputChange }
           >
             <option value="normal"> Normal </option>
@@ -83,7 +79,6 @@ class Form extends React.Component {
             </option>
           </select>
         </label>
-
         <input
           type="checkbox"
           data-testid="trunfo-input"
@@ -91,7 +86,6 @@ class Form extends React.Component {
           onChange={ onInputChange }
         />
         Sim
-
         <button
           type="submit"
           data-testid="save-button"
