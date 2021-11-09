@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
+
     const { cardName,
       cardDescription,
       cardAttr1,
@@ -16,8 +17,9 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
-      <>
+      <form>
         <input
           type="text"
           data-testid="name-input"
@@ -60,34 +62,34 @@ class Form extends React.Component {
           value={ cardImage }
           onChange={ onInputChange }
         />
-        <select
-          name="raridade"
-          id="raridade"
-          data-testid="rare-input"
-          checked={ cardRare }
-          onChange={ onInputChange }
-        >
-          <option
-            value="normal"
+
+        <label htmlFor="raridade">
+          <select
+            name="raridade"
+            id="raridade"
+            data-testid="rare-input"
+            checked={ cardRare }
+            onChange={ onInputChange }
           >
-            Normal
-          </option>
-          <option
-            value="raro"
-          >
-            Raro
-          </option>
-          <option
-            value="muito raro"
-          >
-            Muito Raro
-          </option>
-        </select>
+            <option  value="normal" > Normal </option>
+            <option
+              value="raro" 
+            >
+              Raro
+            </option>
+            <option
+              value="muito raro"
+            >
+              Muito Raro
+            </option>
+          </select>
+        </label>
 
         <input
           type="checkbox"
           data-testid="trunfo-input"
           checked={ cardTrunfo }
+          onChange={ onInputChange }
         />
         Sim
 
@@ -99,7 +101,7 @@ class Form extends React.Component {
         >
           Salvar
         </button>
-      </>
+      </form>
     );
   }
 }
