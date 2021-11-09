@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
-
     const { cardName,
       cardDescription,
       cardAttr1,
@@ -71,9 +70,9 @@ class Form extends React.Component {
             checked={ cardRare }
             onChange={ onInputChange }
           >
-            <option  value="normal" > Normal </option>
+            <option value="normal"> Normal </option>
             <option
-              value="raro" 
+              value="raro"
             >
               Raro
             </option>
