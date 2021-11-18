@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Card extends React.Component {
-
   render() {
     const { cardName,
       cardDescription,
@@ -23,9 +22,9 @@ class Card extends React.Component {
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{ cardRare }</p>
         <div>
-        { 
-          cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null 
-        }
+          {
+            cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null
+          }
         </div>
       </>
     );

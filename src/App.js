@@ -14,9 +14,9 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-    }
+    };
 
-    this.onInputChange = this.onInputChange.bind(this)
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   onInputChange({ target: { value, name, type, checked } }) {
@@ -27,11 +27,11 @@ class App extends React.Component {
     });
   }
 
-  render() { 
+  render() {
     return (
       <>
-        <Form { ...this.state } onInputChange={ this.onInputChange }/>
-        <Card { ...this.state }/>
+        <Form { ...this.state } onInputChange={ this.onInputChange } />
+        <Card { ...this.state } />
       </>
     );
   }

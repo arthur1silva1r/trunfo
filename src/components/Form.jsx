@@ -10,10 +10,10 @@ class Form extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo, 
+      cardTrunfo,
       isSaveButtonDisabled,
       onInputChange,
-      onSaveButtonClick, } = this.props;
+      onSaveButtonClick } = this.props;
 
     return (
       <form>
