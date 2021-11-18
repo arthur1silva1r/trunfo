@@ -10,17 +10,16 @@ class Form extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo,
-      // hasTrunfo,
+      cardTrunfo, 
       isSaveButtonDisabled,
       onInputChange,
-      onSaveButtonClick,
-    } = this.props;
+      onSaveButtonClick, } = this.props;
 
     return (
       <form>
         <input
           type="text"
+          name="nome"
           data-testid="name-input"
           value={ cardName }
           onChange={ onInputChange }
@@ -36,24 +35,28 @@ class Form extends React.Component {
         />
         <input
           type="number"
+          name="attr1"
           data-testid="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
         />
         <input
           type="number"
+          name="attr2"
           data-testid="attr2-input"
           value={ cardAttr2 }
           onChange={ onInputChange }
         />
         <input
           type="number"
+          name="attr3"
           data-testid="attr3-input"
           value={ cardAttr3 }
           onChange={ onInputChange }
         />
         <input
           type="text"
+          name="image"
           data-testid="image-input"
           value={ cardImage }
           onChange={ onInputChange }
@@ -81,6 +84,7 @@ class Form extends React.Component {
         </label>
         <input
           type="checkbox"
+          name="isTrunfo"
           data-testid="trunfo-input"
           checked={ cardTrunfo }
           onChange={ onInputChange }
