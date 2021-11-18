@@ -19,14 +19,14 @@ class Form extends React.Component {
       <form>
         <input
           type="text"
-          name="nome"
+          name="cardName"
           data-testid="name-input"
           value={ cardName }
           onChange={ onInputChange }
         />
         <textarea
           data-testid="description-input"
-          name="descricao"
+          name="cardDescription"
           id="descricao"
           value={ cardDescription }
           onChange={ onInputChange }
@@ -35,35 +35,35 @@ class Form extends React.Component {
         />
         <input
           type="number"
-          name="attr1"
+          name="cardAttr1"
           data-testid="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
         />
         <input
           type="number"
-          name="attr2"
+          name="cardAttr2"
           data-testid="attr2-input"
           value={ cardAttr2 }
           onChange={ onInputChange }
         />
         <input
           type="number"
-          name="attr3"
+          name="cardAttr3"
           data-testid="attr3-input"
           value={ cardAttr3 }
           onChange={ onInputChange }
         />
         <input
           type="text"
-          name="image"
+          name="cardImage"
           data-testid="image-input"
           value={ cardImage }
           onChange={ onInputChange }
         />
         <label htmlFor="raridade">
           <select
-            name="raridade"
+            name="cardRare"
             id="raridade"
             data-testid="rare-input"
             value={ cardRare }
@@ -84,7 +84,7 @@ class Form extends React.Component {
         </label>
         <input
           type="checkbox"
-          name="isTrunfo"
+          name="cardTrunfo"
           data-testid="trunfo-input"
           checked={ cardTrunfo }
           onChange={ onInputChange }
@@ -106,9 +106,9 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
