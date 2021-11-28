@@ -21,7 +21,13 @@ class App extends React.Component {
     this.disableSaveButton = this.disableSaveButton.bind(this);
   }
 
-  // eslint-disable-next-line react/sort-comp
+  onInputChange({ target: { value, name, type, checked } }) {
+    const result = type === 'checkbox' ? checked : value;
+    this.setState({
+      [name]: result,
+    }, this.disableSaveButton);
+  }
+
   verifyAttrs = () => {
     const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const arrayAttrs = [cardAttr1, cardAttr2, cardAttr3];
@@ -41,13 +47,6 @@ class App extends React.Component {
     const arrayInputs = [cardName, cardImage, cardDescription, cardRare];
     const notEmpty = arrayInputs.every((input) => input.length > 0);
     return notEmpty;
-  }
-
-  onInputChange({ target: { value, name, type, checked } }) {
-    const result = type === 'checkbox' ? checked : value;
-    this.setState({
-      [name]: result,
-    }, this.disableSaveButton);
   }
 
   disableSaveButton() {
