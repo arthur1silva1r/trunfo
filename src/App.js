@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Preview from './components/Preview';
 
 class App extends React.Component {
   constructor() {
@@ -15,6 +16,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       arrayCards: [],
+      inputName: '',
       hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
@@ -110,7 +112,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { arrayCards } = this.state;
+    const { arrayCards, inputName } = this.state;
     return (
       <>
         <Form
@@ -119,29 +121,13 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } />
-        {
-          arrayCards.map((el, index) => (
-            <div key={ index }>
-              <Card
-                cardName={ el.cardName }
-                cardDescription={ el.cardDescription }
-                cardAttr1={ el.cardAttr1 }
-                cardAttr2={ el.cardAttr2 }
-                cardAttr3={ el.cardAttr3 }
-                cardImage={ el.cardImage }
-                cardRare={ el.cardRare }
-                cardTrunfo={ el.cardTrunfo }
-              />
-              <button
-                type="submit"
-                data-testid="delete-button"
-                onClick={ () => this.removeCard(index) }
-              >
-                Excluir
-              </button>
-            </div>
-          ))
-        }
+        <Preview arrayCards={ arrayCards } removeCard={ this.removeCard } />
+        <input
+          type="text"
+          data-testid="name-filter"
+          value={ inputName }
+          onChange={ this.onInputChange }
+        />
       </>
     );
   }
