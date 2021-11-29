@@ -8,12 +8,14 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      arrayCards: [],
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
 
@@ -25,7 +27,47 @@ class App extends React.Component {
     const result = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: result,
-    }, this.disableSaveButton);
+    }, () => this.disableSaveButton());
+  }
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const { cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo } = this.state;
+
+    const newCard = {
+      cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((state) => {
+      const { arrayCards } = state;
+      return {
+        cardName: '',
+        cardImage: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        saveButton: true,
+        hasTrunfo: state.hasTrunfo || cardTrunfo,
+        cards: [...arrayCards, newCard],
+      };
+    });
   }
 
   verifyAttrs = () => {
@@ -60,7 +102,11 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Form { ...this.state } onInputChange={ this.onInputChange } />
+        <Form
+          { ...this.state }
+          onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
+        />
         <Card { ...this.state } />
       </>
     );
