@@ -91,6 +91,16 @@ class App extends React.Component {
     return notEmpty;
   }
 
+  removeCard = (index) => {
+    const { arrayCards } = this.state;
+    if (arrayCards[index].cardTrunfo) {
+      arrayCards.splice(index, 1);
+      this.setState({ hasTrunfo: false });
+    } else {
+      arrayCards.splice(index, 1);
+    }
+  }
+
   disableSaveButton() {
     if (this.verifyAttrs() && this.verifyInputs()) {
       this.setState({ isSaveButtonDisabled: false });
@@ -122,6 +132,13 @@ class App extends React.Component {
                 cardRare={ el.cardRare }
                 cardTrunfo={ el.cardTrunfo }
               />
+              <button
+                type="submit"
+                data-testid="delete-button"
+                onClick={ () => this.removeCard(index) }
+              >
+                Excluir
+              </button>
             </div>
           ))
         }
