@@ -65,7 +65,7 @@ class App extends React.Component {
         cardTrunfo: false,
         saveButton: true,
         hasTrunfo: state.hasTrunfo || cardTrunfo,
-        cards: [...arrayCards, newCard],
+        arrayCards: [...arrayCards, newCard],
       };
     });
   }
@@ -100,6 +100,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { arrayCards } = this.state;
     return (
       <>
         <Form
@@ -108,6 +109,22 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } />
+        {
+          arrayCards.map((el, index) => (
+            <div key={ index }>
+              <Card
+                cardName={ el.cardName }
+                cardDescription={ el.cardDescription }
+                cardAttr1={ el.cardAttr1 }
+                cardAttr2={ el.cardAttr2 }
+                cardAttr3={ el.cardAttr3 }
+                cardImage={ el.cardImage }
+                cardRare={ el.cardRare }
+                cardTrunfo={ el.cardTrunfo }
+              />
+            </div>
+          ))
+        }
       </>
     );
   }

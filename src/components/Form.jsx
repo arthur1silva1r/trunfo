@@ -94,7 +94,6 @@ class Form extends React.Component {
             />
           )
         }
-        Sim
         <button
           type="submit"
           data-testid="save-button"
