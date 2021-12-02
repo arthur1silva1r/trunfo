@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
-import Preview from './components/Preview';
 
 class App extends React.Component {
   constructor() {
@@ -16,11 +15,10 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       arrayCards: [],
-      inputName: '',
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      filterInputName: '',
     };
-
     this.onInputChange = this.onInputChange.bind(this);
     this.disableSaveButton = this.disableSaveButton.bind(this);
   }
@@ -93,14 +91,10 @@ class App extends React.Component {
     return notEmpty;
   }
 
-  removeCard = (index) => {
+  deleteByFiltering = (toDelete) => {
     const { arrayCards } = this.state;
-    if (arrayCards[index].cardTrunfo) {
-      arrayCards.splice(index, 1);
-      this.setState({ hasTrunfo: false });
-    } else {
-      arrayCards.splice(index, 1);
-    }
+    const arrayAfterDel = arrayCards.filter(({ cardName: name }) => name !== toDelete);
+    this.setState({ arrayCards: arrayAfterDel, hasTrunfo: false });
   }
 
   disableSaveButton() {
@@ -112,7 +106,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { arrayCards, inputName } = this.state;
+    const { arrayCards,
+      filterInputName } = this.state;
     return (
       <>
         <Form
@@ -120,17 +115,40 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card { ...this.state } />
-        <Preview arrayCards={ arrayCards } removeCard={ this.removeCard } />
-        <input
-          type="text"
-          data-testid="name-filter"
-          value={ inputName }
-          onChange={ this.onInputChange }
-        />
+        <Card { ...this.state } preview />
+        <div>
+          <input
+            type="text"
+            name="filterInputName"
+            value={ filterInputName }
+            onChange={ this.onInputChange }
+            data-testid="name-filter"
+          />
+        </div>
+        {
+          arrayCards.length !== 0 ? (
+            arrayCards.filter((el) => el.cardName.toUpperCase().includes(
+              filterInputName.toUpperCase(),
+            ))
+              .map((und, index) => (
+                <Card
+                  key={ index }
+                  preview={ false }
+                  cardName={ und.cardName }
+                  cardDescription={ und.cardDescription }
+                  cardAttr1={ und.cardAttr1 }
+                  cardAttr2={ und.cardAttr2 }
+                  cardAttr3={ und.cardAttr3 }
+                  cardImage={ und.cardImage }
+                  cardRare={ und.cardRare }
+                  cardTrunfo={ und.cardTrunfo }
+                  deleteByFiltering={ this.deleteByFiltering }
+                />
+              ))
+          ) : null
+        }
       </>
     );
   }
 }
-
 export default App;

@@ -10,7 +10,9 @@ class Card extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo } = this.props;
+      cardTrunfo,
+      deleteByFiltering,
+      preview } = this.props;
 
     return (
       <>
@@ -24,20 +26,44 @@ class Card extends React.Component {
         {
           cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null
         }
+        { preview === false ? (
+          <button
+            type="button"
+            onClick={ () => deleteByFiltering(cardName) }
+            data-testid="delete-button"
+          >
+            Excluir
+          </button>
+        ) : null }
       </>
     );
   }
 }
 
 Card.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
+  cardName: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardAttr1: PropTypes.string,
+  cardAttr2: PropTypes.string,
+  cardAttr3: PropTypes.string,
+  cardImage: PropTypes.string,
+  cardRare: PropTypes.string,
+  cardTrunfo: PropTypes.bool,
+  deleteByFiltering: PropTypes.func,
+  preview: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  cardName: '',
+  cardDescription: '',
+  cardAttr1: '0',
+  cardAttr2: '0',
+  cardAttr3: '0',
+  cardImage: '',
+  cardRare: 'normal',
+  cardTrunfo: false,
+  deleteByFiltering: PropTypes.func,
+  preview: PropTypes.bool,
 };
 
 export default Card;
