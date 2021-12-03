@@ -18,6 +18,7 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       filterInputName: '',
+      filterInputRare: '',
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.disableSaveButton = this.disableSaveButton.bind(this);
@@ -107,7 +108,8 @@ class App extends React.Component {
 
   render() {
     const { arrayCards,
-      filterInputName } = this.state;
+      filterInputName,
+      filterInputRare } = this.state;
     return (
       <>
         <Form
@@ -125,10 +127,24 @@ class App extends React.Component {
             data-testid="name-filter"
           />
         </div>
+        <select
+          data-testid="rare-filter"
+          type="select"
+          name="filterInputRare"
+          value={ filterInputRare }
+          onChange={ this.onInputChange }
+        >
+          <option value="todas" defaultValue> todas </option>
+          <option value="normal"> normal </option>
+          <option value="raro"> raro </option>
+          <option value="muito raro"> muito raro </option>
+        </select>
         {
           arrayCards.length !== 0 ? (
             arrayCards.filter((el) => el.cardName.toUpperCase().includes(
               filterInputName.toUpperCase(),
+            )).filter((el2) => (
+              filterInputRare === 'todas' ? true : el2.cardRare === filterInputRare
             ))
               .map((und, index) => (
                 <Card
