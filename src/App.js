@@ -94,8 +94,18 @@ class App extends React.Component {
 
   deleteByFiltering = (toDelete) => {
     const { arrayCards } = this.state;
-    const arrayAfterDel = arrayCards.filter(({ cardName: name }) => name !== toDelete);
-    this.setState({ arrayCards: arrayAfterDel, hasTrunfo: false });
+    const arrayAfterDel = arrayCards.filter((el) => el.cardName !== toDelete);
+    this.setState({ arrayCards: arrayAfterDel }, () => this.existTrunfo());
+  }
+
+  existTrunfo = () => {
+    const { arrayCards } = this.state;
+    const exist = arrayCards.some(({ cardTrunfo: result }) => result === true);
+    if (exist) {
+      this.setState({ hasTrunfo: true });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
   }
 
   disableSaveButton() {
@@ -118,17 +128,17 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } preview />
-        <div>
-          <input
-            type="text"
-            name="filterInputName"
-            value={ filterInputName }
-            onChange={ this.onInputChange }
-            data-testid="name-filter"
-          />
-        </div>
+        <input
+          type="text"
+          name="filterInputName"
+          id="filterInputName"
+          value={ filterInputName }
+          onChange={ this.onInputChange }
+          data-testid="name-filter"
+        />
         <select
           data-testid="rare-filter"
+          id="rare"
           type="select"
           name="filterInputRare"
           value={ filterInputRare }
@@ -136,16 +146,17 @@ class App extends React.Component {
         >
           <option value="todas" defaultValue> todas </option>
           <option value="normal"> normal </option>
-          <option value="raro"> raro </option>
+          <option value="raro"> Raro </option>
           <option value="muito raro"> muito raro </option>
         </select>
         {
           arrayCards.length !== 0 ? (
-            arrayCards.filter((el) => el.cardName.toUpperCase().includes(
-              filterInputName.toUpperCase(),
-            )).filter((el2) => (
-              filterInputRare === 'todas' ? true : el2.cardRare === filterInputRare
-            ))
+            arrayCards
+              .filter(({ cardName: nameCard }) => nameCard.includes(filterInputName))
+              .filter(({ cardRare: rarity }) => (
+                filterInputRare === '' || filterInputRare === 'todas'
+                  ? true : rarity === filterInputRare
+              ))
               .map((und, index) => (
                 <Card
                   key={ index }
