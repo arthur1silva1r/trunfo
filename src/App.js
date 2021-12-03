@@ -144,7 +144,7 @@ class App extends React.Component {
           value={ filterInputRare }
           onChange={ this.onInputChange }
         >
-          <option value="todas" defaultValue> todas </option>
+          <option value="todas" selected> todas </option>
           <option value="normal"> normal </option>
           <option value="raro"> Raro </option>
           <option value="muito raro"> muito raro </option>
@@ -154,7 +154,7 @@ class App extends React.Component {
             arrayCards
               .filter(({ cardName: nameCard }) => nameCard.includes(filterInputName))
               .filter(({ cardRare: rarity }) => (
-                filterInputRare === '' || filterInputRare === 'todas'
+                filterInputRare === 'todas' || filterInputRare === ''
                   ? true : rarity === filterInputRare
               ))
               .map((und, index) => (
