@@ -38,7 +38,7 @@ class Card extends React.Component {
       </>
     );
   }
-}
+}git@github.com:tryber/sd-016-b-project-tryunfo.git
 
 Card.propTypes = {
   cardName: PropTypes.string,
